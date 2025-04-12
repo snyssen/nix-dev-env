@@ -27,6 +27,5 @@ You have two options to start using this template:
 Once the files are in place, you should:
 
 1. Run `direnv allow` to allow direnv to load the .envrc file. This should in turn automatically build the Nix flake and load the dependencies.
-2. Run `just setup` to run the setup command (this will simply install the pre-commit hook).
 
 You are now ready to start hacking!
