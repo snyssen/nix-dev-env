@@ -1,0 +1,26 @@
+name: Build Nix flake
+on:
+  push:
+
+jobs:
+  build:
+    name: Build Nix flake
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+
+      # Clear space for Nix
+      # - uses: wimpysworld/nothing-but-nix@main
+
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@main
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
+
+      - name: Setup Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
+
+      - name: Build Nix flake
+        run: |
+          nix build .#devShells.x86_64-linux.default
